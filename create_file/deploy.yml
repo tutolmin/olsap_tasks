@@ -1,9 +1,0 @@
----
-- name: Deploying test environment
-  hosts: all
-  become: False
-  gather_facts: False
-  tasks:
-  - name: Do something
-    debug: 
-      msg: "Some action"
