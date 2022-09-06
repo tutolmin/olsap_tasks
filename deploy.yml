@@ -3,7 +3,9 @@
   hosts: all
   become: False
   gather_facts: False
+  vars_files:
+  - vars.yml
   tasks:
-  - name: Do something
+  - name: Create directory
     debug: 
-      msg: "Some action"
+      msg: "Please create {{ directory }} directory"
