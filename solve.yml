@@ -9,4 +9,4 @@
   - name: Create a file
     file: 
       path: "{{ filename }}"
-      state: present
+      state: touch
