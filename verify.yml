@@ -1,0 +1,18 @@
+---
+- name: Verifying test environment
+  hosts: all
+  become: False
+  gather_facts: False
+  vars_files:
+  - vars.yml
+  tasks:
+  - name: Stat directory
+    stat:
+      path: "{{ directory }}"
+    register: p
+  - debug:
+      msg: "Path exists and is a directory"
+    when: p.stat.isdir is defined and p.stat.isdir
+  - fail:
+      msg: "Path does NOT exist or NOT a directory"
+    when: p.stat.isdir is not defined or p.stat.isdir == False
