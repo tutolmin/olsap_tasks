@@ -1,0 +1,19 @@
+---
+- name: Verifying test environment
+  hosts: all
+  become: False
+  gather_facts: False
+  vars_files:
+  - vars.yml
+  tasks:
+  - name: Stat filename
+    stat:
+      path: "{{ filename }}"
+    register: p
+  - debug:
+      msg: "Path exists and is a filename"
+    when: p.stat.isreg is defined and p.stat.isreg
+  - fail:
+      msg: "Path does NOT exist or NOT a filename"
+    when: p.stat.isreg is not defined or p.stat.isreg == False
+
