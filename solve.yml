@@ -3,16 +3,12 @@
   hosts: all
   become: False
   gather_facts: True
-  gather_subset: ['!all','!min','devices']
+  gather_subset: ['!all','!min','os_family']
   vars_files:
   - vars.yml
   tasks:
-  - name: Store string in a file
-    debug:
-      msg: "{{ ansible_facts }}"
-  - name: Store string in a file
-    lineinfile: 
-      path: "{{ filename }}"
-      line: "{{ ansible_facts['product_uuid'] }}"
-      state: present
-      create: True
+  - name: Uninstalling the package
+    apt:
+      name: "{{ package }}"
+      state: absent
+    when: ansible_facts['os_family'] == "Debian"

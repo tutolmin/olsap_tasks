@@ -12,18 +12,8 @@
       path: "{{ filename }}"
     register: p
   - debug:
-      msg: "Path exists and is a filename"
+      msg: "Path {{ filename }} exists and is a filename"
     when: p.stat.isreg is defined and p.stat.isreg
   - fail:
-      msg: "Path does NOT exist or NOT a filename"
-    when: p.stat.isreg is not defined or p.stat.isreg == False
-  - name: Match string in a file in check mode
-    lineinfile:
-      path: "{{ filename }}"
-      line: "{{ ansible_facts['product_uuid'] }}"
-      state: present
-    check_mode: yes
-    register: r
-  - fail:
-      msg: "Line is absent in the filename"
-    when: r.changed == True
+      msg: "Path {{ filename }} exists and is a filename"
+    when: p.stat.isreg is defined and p.stat.isreg == True

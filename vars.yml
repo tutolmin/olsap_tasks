@@ -1,2 +1,3 @@
 ---
-filename: /tmp/uuid.txt
+package: nano
+filename: /bin/nano
