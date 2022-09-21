@@ -15,5 +15,5 @@
       msg: "Path {{ filename }} exists and is a filename"
     when: p.stat.isreg is defined and p.stat.isreg
   - fail:
-      msg: "Path {{ filename }} exists and is a filename"
-    when: p.stat.isreg is defined and p.stat.isreg == True
+      msg: "Path {{ filename }} does NOT exist or NOT a filename"
+    when: p.stat.isreg is not defined or p.stat.isreg == False

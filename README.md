@@ -1,2 +1,2 @@
-### Get system UUID task and project
+### Install 'nano' editor
 lxd.yml is the dynamic inventory 

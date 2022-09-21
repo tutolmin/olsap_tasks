@@ -10,9 +10,9 @@
 #  - debug: 
 #      var: ansible_facts
   - debug: 
-      msg: "Installing the package '{{ package }}'"
-  - name: Installing the package
+      msg: "Uninstalling the package '{{ package }}'"
+  - name: Uninstalling the package
     apt:
       name: "{{ package }}"
-      state: present
+      state: absent
     when: ansible_facts['os_family'] == "Debian"
