@@ -2,11 +2,17 @@
 - name: Solving test environment
   hosts: all
   become: False
-  gather_facts: False
+  gather_facts: True
+  gather_subset: ['!all','!min','devices']
   vars_files:
   - vars.yml
   tasks:
-  - name: Create a file
-    file: 
+  - name: Store string in a file
+    debug:
+      msg: "{{ ansible_facts }}"
+  - name: Store string in a file
+    lineinfile: 
       path: "{{ filename }}"
+      line: "{{ ansible_facts['product_uuid'] }}"
       state: present
+      create: True

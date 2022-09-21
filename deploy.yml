@@ -6,6 +6,6 @@
   vars_files:
   - vars.yml
   tasks:
-  - name: Creating file
+  - name: Fetching system UUID
     debug: 
-      msg: "Please create {{ filename }}"
+      msg: "Please store system UUID in a ~/uuid.txt"
