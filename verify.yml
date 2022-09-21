@@ -11,9 +11,11 @@
       path: "{{ filename }}"
     register: p
   - debug:
-      msg: "Path exists and is a filename"
-    when: p.stat.isreg is defined and p.stat.isreg
+      var: p.stat.attributes
+  - debug:
+      msg: "Path exists and is a filename and has immutable attribute"
+    when: p.stat.isreg is defined and p.stat.isreg and "immutable" in p.stat.attributes
   - fail:
-      msg: "Path does NOT exist or NOT a filename"
-    when: p.stat.isreg is not defined or p.stat.isreg == False
+      msg: "Path does NOT exist or NOT a filename or has NO immutable attribute"
+    when: p.stat.isreg is not defined or p.stat.isreg == False or "immutable" not in p.stat.attributes
 

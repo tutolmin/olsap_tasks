@@ -6,7 +6,9 @@
   vars_files:
   - vars.yml
   tasks:
-  - name: Create a file
+  - name: Create a file and set immutable attribute
     file: 
       path: "{{ filename }}"
       state: touch
+      attributes: "i"
+    ignore_errors: True
