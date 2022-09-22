@@ -6,6 +6,10 @@
   vars_files:
   - vars.yml
   tasks:
-  - name: Fetching system UUID
+  - name: "{{ project_description }}"
     debug: 
       msg: "Please store system UUID in a {{ filename }}"
+  - name: Removing the file
+    file: 
+      path: "{{ filename }}"
+      state: "absent"

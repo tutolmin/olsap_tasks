@@ -7,12 +7,12 @@
   vars_files:
   - vars.yml
   tasks:
-  - name: Store string in a file
-    debug:
-      msg: "{{ ansible_facts }}"
-  - name: Store string in a file
+#  - name: "Storing UUID in a file {{ filename }}"
+#    debug:
+#      msg: "{{ ansible_facts }}"
+  - name: "Store string in a file {{ filename }}"
     lineinfile: 
       path: "{{ filename }}"
       line: "{{ ansible_facts['product_uuid'] }}"
-      state: present
+      state: "present"
       create: True

@@ -1,9 +1,8 @@
 ---
-filename: /tmp/uuid.txt
-/tmp/vars.yml
-project_name: ""
-project_description: ""
-scm_branch: ""
+filename: "/tmp/uuid.txt"
+project_name: "Get system UUID"
+project_description: "Fetch system universally unique identifier and store it in a file"
+scm_branch: "system_uuid"
 controller_username: "symfony"
 controller_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256

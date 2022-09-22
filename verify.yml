@@ -7,7 +7,7 @@
   vars_files:
   - vars.yml
   tasks:
-  - name: Stat filename
+  - name: "Stat filename {{ filename }}"
     stat:
       path: "{{ filename }}"
     register: p
@@ -25,5 +25,5 @@
     check_mode: yes
     register: r
   - fail:
-      msg: "Line is absent in the filename"
+      msg: "Correct UUID is absent in the filename"
     when: r.changed == True
