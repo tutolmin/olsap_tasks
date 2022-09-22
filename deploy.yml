@@ -1,7 +1,7 @@
 ---
 - name: Deploying test environment
   hosts: all
-  become: False
+  become: True
   gather_facts: True
   gather_subset: ['!all','!min','os_family']
   vars_files:
@@ -9,9 +9,9 @@
   tasks:
 #  - debug: 
 #      var: ansible_facts
-  - debug: 
-      msg: "Installing the package '{{ package }}'"
-  - name: Installing the package
+#  - debug: 
+#      msg: "Installing the package '{{ package }}'"
+  - name: "Installing the package '{{ package }}'"
     apt:
       name: "{{ package }}"
       state: present

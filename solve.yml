@@ -1,13 +1,13 @@
 ---
 - name: Solving test environment
   hosts: all
-  become: False
+  become: True
   gather_facts: True
   gather_subset: ['!all','!min','os_family']
   vars_files:
   - vars.yml
   tasks:
-  - name: Uninstalling the package
+  - name: "Uninstalling {{ package }} package"
     apt:
       name: "{{ package }}"
       state: absent
