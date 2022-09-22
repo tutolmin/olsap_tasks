@@ -1,7 +1,7 @@
 ---
 - name: Deploying test environment
   hosts: all
-  become: False
+  become: True
   gather_facts: True
   gather_subset: ['!all','!min','os_family']
   vars_files:
@@ -9,10 +9,10 @@
   tasks:
 #  - debug: 
 #      var: ansible_facts
-  - debug: 
-      msg: "Uninstalling the package '{{ package }}'"
-  - name: Uninstalling the package
+#  - debug: 
+#      msg: "Uninstalling the package '{{ package }}'"
+  - name: "Uninstalling the package '{{ package }}'"
     apt:
       name: "{{ package }}"
-      state: absent
+      state: "absent"
     when: ansible_facts['os_family'] == "Debian"

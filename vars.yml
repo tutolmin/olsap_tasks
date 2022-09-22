@@ -1,17 +1,8 @@
 ---
 package: nano
 filename: /bin/nano
-/tmp/vars.yml
-project_name: ""
-project_description: ""
-scm_branch: ""
-controller_username: "symfony"
-controller_password: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          34626137653563373566323134336434373665643034353561376438633935623763653739633438
-          3139663261343833616239653165643234653933393334330a633333666133646436656635336565
-          63393033343336666533643537343063376139306537366333303830343865303036623061653630
-          3137633133363038660a323338306431636333373635333735626136323632633465373931653063
-          3565
-controller_host: "http://172.27.72.4:8080/"
+project_name: "Install deb package"
+project_description: "Install 'nano' package into the OS"
+scm_branch: "deb_install"
+controller_config_file: "/root/awx.cfg"
 scm_url: "https://github.com/tutolmin/olsap_tasks.git"
