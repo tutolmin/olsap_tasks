@@ -6,10 +6,15 @@
   vars_files:
   - vars.yml
   tasks:
-  - name: Creating file and setting immutable attribute
+  - name: "{{ project_name }}"
     debug: 
       msg: "Please create {{ filename }} and set immutable attribute"
-  - name: Remove the file
+  - name: Unsetting the attribute
+    file:
+      path: "{{ filename }}"
+      attributes: "-i"
+      state: touch
+  - name: Removing the file "{{ filename }}"
     file:
       path: "{{ filename }}"
       state: absent
