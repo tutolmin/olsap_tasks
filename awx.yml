@@ -1,7 +1,8 @@
 ---
 - name: Creating project and job templates in AWX
-  hosts: awx
   become: False
+  hosts: localhost
+  connection: local
   gather_facts: False
   vars_files:
   - vars.yml
@@ -15,9 +16,7 @@
     awx.awx.project:
       name: "{{ project_name }}"
       description: "{{ project_description }}"
-      controller_username: "{{ controller_username }}"
-      controller_password: "{{ controller_password }}"
-      controller_host: "{{ controller_host }}"
+      controller_config_file: "{{ controller_config_file }}"
       organization: "Default"
       scm_type: "git"
       scm_url: "{{ scm_url }}"
@@ -29,9 +28,7 @@
     awx.awx.job_template:
       name: "{{ project_name }}: {{ item }}"
       project: "{{ project_name }}"
-      controller_username: "{{ controller_username }}"
-      controller_password: "{{ controller_password }}"
-      controller_host: "{{ controller_host }}"
+      controller_config_file: "{{ controller_config_file }}"
       job_type: "run"
       inventory: "LXD"
       ask_limit_on_launch: True

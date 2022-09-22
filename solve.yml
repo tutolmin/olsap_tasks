@@ -6,7 +6,7 @@
   vars_files:
   - vars.yml
   tasks:
-  - name: Create a file
+  - name: "Creating a file {{ filename }}"
     file: 
       path: "{{ filename }}"
       state: touch

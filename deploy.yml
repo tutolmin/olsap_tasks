@@ -1,11 +1,16 @@
 ---
 - name: Deploying test environment
   hosts: all
-  become: False
+  become: True
   gather_facts: False
   vars_files:
   - vars.yml
   tasks:
-  - name: Creating file
+  - name: "{{ project_name }}"
     debug: 
       msg: "Please create {{ filename }}"
+  - name: "Deleting a file {{ filename }}"
+    file: 
+      path: "{{ filename }}"
+      state: "absent"
+
