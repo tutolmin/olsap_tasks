@@ -14,6 +14,7 @@
       path: "{{ filename }}"
       attributes: "-i"
       state: touch
+    ignore_errors: True
   - name: Removing the file "{{ filename }}"
     file:
       path: "{{ filename }}"
