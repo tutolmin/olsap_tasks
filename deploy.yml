@@ -8,4 +8,4 @@
   tasks:
   - name: Fetching system UUID
     debug: 
-      msg: "Please store system UUID in a ~/uuid.txt"
+      msg: "Please store system UUID in a {{ filename }}"
