@@ -1,6 +1,6 @@
 ---
-project_name: ""
-project_description: ""
+project_name: "Inventory update"
+project_description: "Dynamic inventory update"
 scm_branch: ""
 controller_config_file: "/root/awx.cfg"
 scm_url: "https://github.com/tutolmin/olsap_tasks.git"

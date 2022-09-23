@@ -24,15 +24,15 @@
       scm_update_on_launch: True
       scm_update_cache_timeout: 30
       state: "present"
-  - name: Create job templates
-    awx.awx.job_template:
-      name: "{{ project_name }}: {{ item }}"
-      project: "{{ project_name }}"
-      controller_config_file: "{{ controller_config_file }}"
-      job_type: "run"
-      inventory: "LXD"
-      ask_limit_on_launch: True
-      playbook: "{{ item }}.yml"
-      credentials: ["OLSAP"]
-      state: "present"
-    loop: "{{ pb_names }}"
+#  - name: Create job templates
+#    awx.awx.job_template:
+#      name: "{{ project_name }}: {{ item }}"
+#      project: "{{ project_name }}"
+#      controller_config_file: "{{ controller_config_file }}"
+#      job_type: "run"
+#      inventory: "LXD"
+#      ask_limit_on_launch: True
+#      playbook: "{{ item }}.yml"
+#      credentials: ["OLSAP"]
+#      state: "present"
+#    loop: "{{ pb_names }}"
