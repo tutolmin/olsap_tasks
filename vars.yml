@@ -1,4 +1,5 @@
 ---
+username: "johndoe"
 project_name: "Inventory update"
 project_description: "Dynamic inventory update"
 scm_branch: ""

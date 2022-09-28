@@ -1,0 +1,13 @@
+---
+- name: Neccessary steps to deploy test environment
+  become: True
+  hosts: all
+  gather_facts: False
+  vars_files:
+  - vars.yml
+  tasks:
+  - name: Creating test user
+    user:
+      name: "{{ username }}"
+      password: "$6$7K2TuIrn3eLbzUbb$j288F6TpZ.OS5INcDR5F291abiL3IVpRPKSWa9DA9dz2viWfGuQ5oSS.CIqkqCyRJni5vEslxKwKA8VA3/nOv1"
+      comment: "OLSAP test user"
