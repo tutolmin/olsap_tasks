@@ -1,7 +1,7 @@
 ---
-directory: /tmp/some_dir
+directory: /var/tmp/test_dir
 project_name: "Create a directory"
-project_description: "Create a directory in user home dir: ~/test_dir"
+project_description: "Create a directory with the following path: /var/tmp/test_dir"
 scm_branch: "create_directory"
 controller_config_file: "/root/awx.cfg"
 scm_url: "https://github.com/tutolmin/olsap_tasks.git"
