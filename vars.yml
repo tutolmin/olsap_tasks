@@ -1,6 +1,7 @@
 ---
 package: nano
 filename: /bin/nano
+username: johndoe
 project_name: "Install deb package"
 project_description: "Install 'nano' package into the OS"
 scm_branch: "deb_install"
