@@ -1,7 +1,7 @@
 ---
-filename: /tmp/some_file
+filename: /var/tmp/test_file
 project_name: "Create a file"
-project_description: "Create a file in user home dir: ~/test_file"
+project_description: "Create a file: /var/tmp/test_file"
 scm_branch: "create_file"
 controller_config_file: "/root/awx.cfg"
 scm_url: "https://github.com/tutolmin/olsap_tasks.git"
