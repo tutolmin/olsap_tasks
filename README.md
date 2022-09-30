@@ -1,2 +1,2 @@
-### Create symbolic link to some file
+### Create a named pipe
 lxd.yml is the dynamic inventory 

@@ -5,12 +5,10 @@
   gather_facts: False
   vars_files:
   - vars.yml
-  vars:
-  - source_file: "{{ source }}/{{ filename }}"
   tasks:
-  - name: "Stat filename {{ destination }}/{{ filename }}"
+  - name: "Stat filename {{ filename }}"
     stat:
-      path: "{{ destination }}/{{ filename }}"
+      path: "{{ filename }}"
     register: p
   - debug:
       var: p
@@ -19,14 +17,14 @@
       msg: "Path {{ p.stat.path }} exists"
     when: p.stat.exists is defined and p.stat.exists == True
   - debug:
-      msg: "Discovered link source {{ p.stat.lnk_source }}"
-    when: p.stat.lnk_source is defined
+      msg: "Path {{ p.stat.path }} is fifo"
+    when: p.stat.isfifo is defined and p.stat.isfifo == True
   - debug:
-      var: source_file.find(p.stat.lnk_source)
-    when: p.stat.lnk_source is defined
+      msg: "Discovered mime type {{ p.stat.mimetype }}"
+    when: p.stat.mimetype is defined
   - fail:
-      msg: "Path does NOT exist or NOT a link or points to a wrong file"
-    when: p.stat.islnk is not defined or 
-          p.stat.islnk == False or 
-          source_file.find(p.stat.lnk_source) != 0
+      msg: "Path does NOT exist or NOT a pipe"
+    when: p.stat.isfifo is not defined or 
+          p.stat.isfifo == False or 
+          p.stat.mimetype != "inode/fifo"
 

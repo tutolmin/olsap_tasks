@@ -8,9 +8,9 @@
   tasks:
   - name: "{{ project_name }}"
     debug: 
-      msg: "Please create a symbolic link to {{ source }}/{{ filename }} in {{ destination }}"
-  - name: "Deleting a file {{ destination }}/{{ filename }}"
+      msg: "Please create a named pipe with the following path: {{ filename }}"
+  - name: "Deleting a file {{ filename }}"
     file: 
-      path: "{{ destination }}/{{ filename }}"
+      path: "{{ filename }}"
       state: "absent"
 
