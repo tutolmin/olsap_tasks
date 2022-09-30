@@ -18,5 +18,5 @@
       msg: "Mime type {{ p.stat.mimetype }}"
     when: p.stat.mimetype is defined
   - fail:
-      msg: "Path {{ filename }} does NOT exist or NOT a filename"
-    when: p.stat.isreg is not defined or p.stat.isreg == False
+      msg: "Path {{ filename }} does NOT exist or NOT a filename or NOT executable"
+    when: p.stat.isreg is not defined or p.stat.isreg == False or p.stat.mimetype != "application/x-sharedlib"
