@@ -5,18 +5,28 @@
   gather_facts: False
   vars_files:
   - vars.yml
+  vars:
+  - source_file: "{{ source }}/{{ filename }}"
   tasks:
-  - name: "Stat filename {{ filename }}"
+  - name: "Stat filename {{ destination }}/{{ filename }}"
     stat:
-      path: "{{ filename }}"
+      path: "{{ destination }}/{{ filename }}"
     register: p
+  - debug:
+      var: p
+    when: p.stat.exists is defined and p.stat.exists == True
   - debug:
       msg: "Path {{ p.stat.path }} exists"
     when: p.stat.exists is defined and p.stat.exists == True
   - debug:
-      msg: "Mime type {{ p.stat.mimetype }}"
-    when: p.stat.mimetype is defined
+      msg: "Discovered link source {{ p.stat.lnk_source }}"
+    when: p.stat.lnk_source is defined
+  - debug:
+      var: source_file.find(p.stat.lnk_source)
+    when: p.stat.lnk_source is defined
   - fail:
-      msg: "Path does NOT exist or NOT a filename"
-    when: p.stat.isreg is not defined or p.stat.isreg == False
+      msg: "Path does NOT exist or NOT a link or points to a wrong file"
+    when: p.stat.islnk is not defined or 
+          p.stat.islnk == False or 
+          source_file.find(p.stat.lnk_source) != 0
 

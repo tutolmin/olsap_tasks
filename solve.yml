@@ -1,12 +1,17 @@
 ---
 - name: Solving test environment
   hosts: all
-  become: False
+  become: True
   gather_facts: False
   vars_files:
   - vars.yml
   tasks:
-  - name: "Creating a file {{ filename }}"
+  - name: "Deleting a file {{ destination }}/{{ filename }}"
     file: 
-      path: "{{ filename }}"
-      state: touch
+      path: "{{ destination }}/{{ filename }}"
+      state: "absent"
+  - name: "Creating a symbolic link {{ destination }}/{{ filename }}"
+    file: 
+      src: "{{ source }}/{{ filename }}"
+      dest: "{{ destination }}/{{ filename }}"
+      state: link

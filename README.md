@@ -1,2 +1,2 @@
-### Create file task and project
+### Create symbolic link to some file
 lxd.yml is the dynamic inventory 
