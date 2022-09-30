@@ -2,6 +2,6 @@
 project_name: "Set immutable attribute"
 project_description: "Creating a file and setting immutable attribute to it"
 scm_branch: "set_immune"
-filename: "/tmp/some_file"
+filename: "/var/tmp/some_file"
 controller_config_file: "~/awx.cfg"
 scm_url: "https://github.com/tutolmin/olsap_tasks.git"
