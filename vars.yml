@@ -1,6 +1,7 @@
 ---
 package: nano
 filename: /bin/nano
+username: "johndoe"
 project_name: "Uninstall deb package"
 project_description: "Uninstall 'nano' package from the OS"
 scm_branch: "deb_uninstall"
