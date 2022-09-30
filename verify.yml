@@ -11,11 +11,17 @@
       path: "{{ directory }}"
     register: p
   - debug:
+      var: p
+  - debug:
       msg: "Path {{ p.stat.path }} exists"
     when: p.stat.exists is defined and p.stat.exists == True
+  - debug:
+      msg: "Path {{ p.stat.path }} is directory"
+    when: p.stat.isdir is defined and p.stat.isdir == True
   - debug:
       msg: "Mime type {{ p.stat.mimetype }}"
     when: p.stat.mimetype is defined
   - fail:
       msg: "Path does NOT exist or NOT a directory"
-    when: p.stat.isdir is not defined or p.stat.isdir == False
+    when: p.stat.isdir is not defined or p.stat.isdir == False or
+          p.stat.mimetype != "inode/directory"
