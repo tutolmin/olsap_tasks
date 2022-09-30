@@ -5,13 +5,15 @@
   gather_facts: False
   vars_files:
   - vars.yml
+  vars:
+  - destination_file: "{{ destination }}/{{ filename }}"
   tasks:
-  - name: "Deleting a file {{ destination }}/{{ filename }}"
+  - name: "Deleting a file {{ destination_file }}"
     file: 
-      path: "{{ destination }}/{{ filename }}"
+      path: "{{ destination_file }}"
       state: "absent"
-  - name: "Creating a symbolic link {{ destination }}/{{ filename }}"
+  - name: "Creating a symbolic link {{ destination_file }}"
     file: 
       src: "{{ source }}/{{ filename }}"
-      dest: "{{ destination }}/{{ filename }}"
-      state: link
+      dest: "{{ destination_file }}"
+      state: "link"
