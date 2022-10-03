@@ -9,7 +9,7 @@
   - name: "{{ project_name }}"
     debug: 
       msg: "Please create {{ directory }} directory"
-  - name: "Deleting directory {{ directory }}"
+  - name: "Deleting directory {{ parent_directory }}"
     file: 
-      path: "{{ directory }}"
+      path: "{{ parent_directory }}"
       state: absent
