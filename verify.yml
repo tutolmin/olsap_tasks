@@ -17,15 +17,21 @@
   - debug:
       msg: "Path {{ f.stat.path }} exists"
     when: f.stat.exists is defined and f.stat.exists == True
+  - fail:
+      msg: "Path does NOT exist or NOT a regular file"
+    when: f.stat.exists is not defined or f.stat.exists == False
   - debug:
       msg: "Path {{ h.stat.path }} exists"
     when: h.stat.exists is defined and h.stat.exists == True
-  - debug:
-      msg: "File inode # {{ f.stat.inode }} not equal to hard link inode # {{ h.stat.inode }}"
-    when: f.stat.inode is defined and h.stat.inode is defined and f.stat.inode != h.stat.inode
   - fail:
-      msg: "Files do not exist or are not linking to the same inode"
-    when: f.stat.exists not defined
+      msg: "Path does NOT exist or NOT a regular file"
+    when: h.stat.exists is not defined or h.stat.exists == False
+  - debug:
+      msg: "File inode # {{ f.stat.inode }} is equal to hard link inode # {{ h.stat.inode }}"
+    when: f.stat.inode is defined and h.stat.inode is defined and f.stat.inode == h.stat.inode
+  - fail:
+      msg: "File inode # {{ f.stat.inode }} is not equal to hard link inode # {{ h.stat.inode }}"
+    when: f.stat.inode is not defined or h.stat.inode is not defined or f.stat.inode != h.stat.inode
   - name: Check if line is present in the file
     lineinfile:
       path: "{{ filename }}"

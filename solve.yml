@@ -25,7 +25,7 @@
       var: p
   - name: "Store inode in the file"
     shell: |
-      echo -n "{{ p.stat.inode }}" > "{{ filename }}"
+      echo "{{ p.stat.inode }}" > "{{ filename }}"
 #    lineinfile:
 #      line: "{{ p.stat.inode }}"
 #      path: "{{ filename }}" 
