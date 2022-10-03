@@ -1,16 +1,39 @@
 ---
 - name: Solving test environment
   hosts: all
-  become: False
+  become: True
   gather_facts: False
   vars_files:
   - vars.yml
   tasks:
-  - name: "Deleting a file {{ filename }}"
+  - name: "Deleting the files"
     file:
-      path: "{{ filename }}"
+      path: "{{ item }}"
       state: "absent"
+    with_items:
+    - "{{ filename }}"
+    - "{{ hardlink }}"
   - name: "Creating a file {{ filename }}"
     file: 
       path: "{{ filename }}"
-      state: touch
+      state: "touch"
+  - name: "Stat filename {{ filename }}"
+    stat:
+      path: "{{ filename }}"
+    register: p
+  - debug:
+      var: p
+  - name: "Store inode in the file"
+    shell: |
+      echo -n "{{ p.stat.inode }}" > "{{ filename }}"
+#    lineinfile:
+#      line: "{{ p.stat.inode }}"
+#      path: "{{ filename }}" 
+# it is important to first save the inode
+# and only then create a hard link
+# lineinfile seem to delete initial file
+  - name: "Creating a hard link {{ hardlink }}"
+    file: 
+      src: "{{ filename }}"
+      dest: "{{ hardlink }}"
+      state: "hard"

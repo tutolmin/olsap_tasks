@@ -9,14 +9,28 @@
   - name: "Stat filename {{ filename }}"
     stat:
       path: "{{ filename }}"
-    register: p
+    register: f
+  - name: "Stat hard link {{ hardlink }}"
+    stat:
+      path: "{{ hardlink }}"
+    register: h
   - debug:
-      msg: "Path {{ p.stat.path }} exists"
-    when: p.stat.exists is defined and p.stat.exists == True
+      msg: "Path {{ f.stat.path }} exists"
+    when: f.stat.exists is defined and f.stat.exists == True
   - debug:
-      msg: "Mime type {{ p.stat.mimetype }}"
-    when: p.stat.mimetype is defined
+      msg: "Path {{ h.stat.path }} exists"
+    when: h.stat.exists is defined and h.stat.exists == True
+  - debug:
+      msg: "File inode # {{ f.stat.inode }} not equal to hard link inode # {{ h.stat.inode }}"
+    when: f.stat.inode is defined and h.stat.inode is defined and f.stat.inode != h.stat.inode
   - fail:
-      msg: "Path does NOT exist or NOT a filename"
-    when: p.stat.isreg is not defined or p.stat.isreg == False
-
+      msg: "Files do not exist or are not linking to the same inode"
+    when: f.stat.exists not defined
+  - name: Check if line is present in the file
+    lineinfile:
+      path: "{{ filename }}"
+      regex: "{{ f.stat.inode }}"
+      line: "{{ f.stat.inode }}"
+    check_mode: True
+    register: c
+    failed_when: (c is changed) or (c is failed)

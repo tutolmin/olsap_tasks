@@ -1,7 +1,8 @@
 ---
 filename: /var/tmp/test_file
-project_name: "Create a file"
-project_description: "Create a file: /var/tmp/test_file"
-scm_branch: "create_file"
+hardlink: /var/tmp/hard_link
+project_name: "Create a hard link"
+project_description: "Create a file: /var/tmp/test_file and a hard link to it /var/tmp/hard_link Then store their inode number in the file"
+scm_branch: "create_hardlink"
 controller_config_file: "/root/awx.cfg"
 scm_url: "https://github.com/tutolmin/olsap_tasks.git"

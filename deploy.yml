@@ -8,9 +8,11 @@
   tasks:
   - name: "{{ project_name }}"
     debug: 
-      msg: "Please create {{ filename }}"
-  - name: "Deleting a file {{ filename }}"
+      msg: "{{ project_description }}"
+  - name: "Deleting the files"
     file: 
-      path: "{{ filename }}"
+      path: "{{ item }}"
       state: "absent"
-
+    with_items:
+    - "{{ filename }}"
+    - "{{ hardlink }}"
