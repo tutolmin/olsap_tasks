@@ -2,7 +2,11 @@
 - name: Solving test environment
   hosts: all
   become: True
-  gather_facts: False
+  gather_facts: True
+  gather_subset:
+  - "!all"
+  - "!min"
+  - "network"
   vars_files:
   - vars.yml
   tasks:
@@ -12,28 +16,11 @@
       state: "absent"
     with_items:
     - "{{ filename }}"
-    - "{{ hardlink }}"
-  - name: "Creating a file {{ filename }}"
-    file: 
-      path: "{{ filename }}"
-      state: "touch"
-  - name: "Stat filename {{ filename }}"
-    stat:
-      path: "{{ filename }}"
-    register: p
-  - debug:
-      var: p
-  - name: "Store inode in the file"
-    shell: |
-      echo "{{ p.stat.inode }}" > "{{ filename }}"
-#    lineinfile:
-#      line: "{{ p.stat.inode }}"
-#      path: "{{ filename }}" 
-# it is important to first save the inode
-# and only then create a hard link
-# lineinfile seem to delete initial file
-  - name: "Creating a hard link {{ hardlink }}"
-    file: 
-      src: "{{ filename }}"
-      dest: "{{ hardlink }}"
-      state: "hard"
+#  - name: Print all available facts
+#    ansible.builtin.debug:
+#      var: ansible_facts
+  - name: "Store default gateway into file"
+    lineinfile:
+      line: "{{ ansible_facts['default_ipv4']['gateway'] }}"
+      path: "{{ filename }}" 
+      create: True

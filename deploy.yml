@@ -15,4 +15,3 @@
       state: "absent"
     with_items:
     - "{{ filename }}"
-    - "{{ hardlink }}"

@@ -1,8 +1,7 @@
 ---
-filename: /var/tmp/test_file
-hardlink: /var/tmp/hard_link
-project_name: "Create a hard link"
-project_description: "Create a file: /var/tmp/test_file and a hard link to it /var/tmp/hard_link Then store their inode number in the file"
-scm_branch: "create_hardlink"
+filename: /var/tmp/default_gateway
+project_name: "Get default gateway"
+project_description: "Get system default gateway and store the value into the file: /var/tmp/default_gateway"
+scm_branch: "default_gateway"
 controller_config_file: "/root/awx.cfg"
 scm_url: "https://github.com/tutolmin/olsap_tasks.git"
