@@ -1,7 +1,10 @@
 ---
-filename: /var/tmp/test_file
-project_name: "Create a file"
-project_description: "Create a file: /var/tmp/test_file"
-scm_branch: "create_file"
+workdir: /var/tmp
+archive: archive.tgz
+directory: /usr
+filename: tar.1.gz
+project_name: "Extract TGZ archive"
+project_description: "Extract tar.1.gz file from archive /var/tmp/archive.tgz and put it into /var/tmp"
+scm_branch: "extract_tgz_file"
 controller_config_file: "/root/awx.cfg"
 scm_url: "https://github.com/tutolmin/olsap_tasks.git"

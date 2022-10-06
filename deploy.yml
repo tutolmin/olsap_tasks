@@ -8,9 +8,16 @@
   tasks:
   - name: "{{ project_name }}"
     debug: 
-      msg: "Please create {{ filename }}"
-  - name: "Deleting a file {{ filename }}"
+      msg: "{{ project_description }}"
+  - name: "Deleting artefacts"
     file: 
-      path: "{{ filename }}"
+      path: "{{ item }}"
       state: "absent"
-
+    loop:
+    - "{{ workdir }}{{ directory }}"
+    - "{{ workdir }}/{{ archive }}"
+    - "{{ workdir }}/{{ filename }}"
+  - name: "Compress directory {{ directory }} into {{ archive }}"
+    archive:
+      path: "{{ directory }}"
+      dest: "{{ workdir }}/{{ archive }}"
