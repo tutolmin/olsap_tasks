@@ -25,20 +25,20 @@
       msg: "File is NOT a regular file"
     when: p.stat.isreg is not defined or p.stat.isreg == False
   - debug:
-      msg: "File {{ filename }} has execute permission for an user"
-    when: p.stat.xusr is defined and p.stat.xusr == True
+      msg: "File {{ filename }} has write permission for an user"
+    when: p.stat.wusr is defined and p.stat.wusr == True
   - fail:
-      msg: "File does NOT have execute permission for an user"
-    when: p.stat.xusr is not defined or p.stat.xusr == False
+      msg: "File does NOT have write permission for an user"
+    when: p.stat.wusr is not defined or p.stat.wusr == False
   - debug:
-      msg: "File {{ filename }} has execute permission for a group"
-    when: p.stat.xgrp is defined and p.stat.xgrp == True
+      msg: "File {{ filename }} has write permission for a group"
+    when: p.stat.wgrp is defined and p.stat.wgrp == True
   - fail:
-      msg: "File does NOT have execute permission for a group"
-    when: p.stat.xgrp is not defined or p.stat.xgrp == False
+      msg: "File does NOT have write permission for a group"
+    when: p.stat.wgrp is not defined or p.stat.wgrp == False
   - debug:
-      msg: "File {{ filename }} has execute permission for others"
-    when: p.stat.xoth is defined and p.stat.xoth == True
+      msg: "File {{ filename }} has write permission for others"
+    when: p.stat.woth is defined and p.stat.woth == True
   - fail:
-      msg: "File does NOT have execute permission for others"
-    when: p.stat.xoth is not defined or p.stat.xoth == False
+      msg: "File does NOT have write permission for others"
+    when: p.stat.woth is not defined or p.stat.woth == False
