@@ -5,28 +5,40 @@
   gather_facts: False
   vars_files:
   - vars.yml
-  vars:
-  - source_file: "{{ source }}/{{ filename }}"
   tasks:
-  - name: "Stat filename {{ destination }}/{{ filename }}"
+  - name: "Stat filename {{ filename }}"
     stat:
-      path: "{{ destination }}/{{ filename }}"
+      path: "{{ filename }}"
     register: p
   - debug:
       var: p
+  - debug:
+      msg: "File {{ filename }} exists"
     when: p.stat.exists is defined and p.stat.exists == True
-  - debug:
-      msg: "Path {{ p.stat.path }} exists"
-    when: p.stat.exists is defined and p.stat.exists == True
-  - debug:
-      msg: "Discovered link source {{ p.stat.lnk_source }}"
-    when: p.stat.lnk_source is defined
-  - debug:
-      var: source_file.find(p.stat.lnk_source)
-    when: p.stat.lnk_source is defined
   - fail:
-      msg: "Path does NOT exist or NOT a link or points to a wrong file"
-    when: p.stat.islnk is not defined or 
-          p.stat.islnk == False or 
-          source_file.find(p.stat.lnk_source) != 0
-
+      msg: "File does NOT exist"
+    when: p.stat.exists is not defined or p.stat.exists == False
+  - debug:
+      msg: "File {{ filename }} is regular file"
+    when: p.stat.isreg is defined and p.stat.isreg == True
+  - fail:
+      msg: "File is NOT a regular file"
+    when: p.stat.isreg is not defined or p.stat.isreg == False
+  - debug:
+      msg: "File {{ filename }} has execute permission for an user"
+    when: p.stat.xusr is defined and p.stat.xusr == True
+  - fail:
+      msg: "File does NOT have execute permission for an user"
+    when: p.stat.xusr is not defined or p.stat.xusr == False
+  - debug:
+      msg: "File {{ filename }} has execute permission for a group"
+    when: p.stat.xgrp is defined and p.stat.xgrp == True
+  - fail:
+      msg: "File does NOT have execute permission for a group"
+    when: p.stat.xgrp is not defined or p.stat.xgrp == False
+  - debug:
+      msg: "File {{ filename }} has execute permission for others"
+    when: p.stat.xoth is defined and p.stat.xoth == True
+  - fail:
+      msg: "File does NOT have execute permission for others"
+    when: p.stat.xoth is not defined or p.stat.xoth == False

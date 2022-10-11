@@ -1,9 +1,7 @@
 ---
-source: /etc
-destination: /var/tmp
-filename: hosts
-project_name: "Create a symbolic link"
-project_description: "Create a symbolic link to /etc/hosts in /var/tmp"
-scm_branch: "create_symlink"
+filename: /var/tmp/test_file
+project_name: "Create a file and make it executable"
+project_description: "Create a file 'test_file' in /var/tmp and set execute permission"
+scm_branch: "set_file_execute_perm"
 controller_config_file: "/root/awx.cfg"
 scm_url: "https://github.com/tutolmin/olsap_tasks.git"
