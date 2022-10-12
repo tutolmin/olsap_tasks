@@ -1,7 +1,7 @@
 ---
 - name: Solving test environment
   hosts: all
-  become: True
+  become: False
   gather_facts: False
   vars_files:
   - vars.yml
@@ -10,8 +10,9 @@
     file: 
       path: "{{ filename }}"
       state: "absent"
+    become: True
   - name: "Creating a {{ filename }}"
     file: 
       path: "{{ filename }}"
       state: "touch"
-      mode: "0666"
+      mode: "0600"

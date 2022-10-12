@@ -1,2 +1,2 @@
-### Create a file and set write permission
+### Create a file and make it readable by user only
 lxd.yml is the dynamic inventory 

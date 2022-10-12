@@ -1,7 +1,7 @@
 ---
 filename: /var/tmp/test_file
-project_name: "Create a file and make it writable"
-project_description: "Create a file 'test_file' in /var/tmp and set write permission for owner, group and others"
-scm_branch: "set_file_write_perm"
+project_name: "Create a file and make it readable by user only"
+project_description: "Create a file 'test_file' in /var/tmp and remove read permission for group and others"
+scm_branch: "unset_file_read_perm"
 controller_config_file: "/root/awx.cfg"
 scm_url: "https://github.com/tutolmin/olsap_tasks.git"

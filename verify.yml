@@ -25,20 +25,20 @@
       msg: "File is NOT a regular file"
     when: p.stat.isreg is not defined or p.stat.isreg == False
   - debug:
-      msg: "File {{ filename }} has write permission for an user"
-    when: p.stat.wusr is defined and p.stat.wusr == True
+      msg: "File {{ filename }} has read permission for an user"
+    when: p.stat.rusr is defined and p.stat.rusr == True
   - fail:
-      msg: "File does NOT have write permission for an user"
-    when: p.stat.wusr is not defined or p.stat.wusr == False
+      msg: "File does NOT have read permission for an user"
+    when: p.stat.rusr is defined and p.stat.rusr == False
   - debug:
-      msg: "File {{ filename }} has write permission for a group"
-    when: p.stat.wgrp is defined and p.stat.wgrp == True
+      msg: "File {{ filename }} has NO read permission for a group"
+    when: p.stat.rgrp is defined and p.stat.rgrp == False
   - fail:
-      msg: "File does NOT have write permission for a group"
-    when: p.stat.wgrp is not defined or p.stat.wgrp == False
+      msg: "File has read permission for a group"
+    when: p.stat.rgrp is defined and p.stat.rgrp == True
   - debug:
-      msg: "File {{ filename }} has write permission for others"
-    when: p.stat.woth is defined and p.stat.woth == True
+      msg: "File {{ filename }} has NO read permission for others"
+    when: p.stat.roth is defined and p.stat.roth == False
   - fail:
-      msg: "File does NOT have write permission for others"
-    when: p.stat.woth is not defined or p.stat.woth == False
+      msg: "File has write permission for others"
+    when: p.stat.roth is defined and p.stat.roth == True
