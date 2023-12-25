@@ -1,6 +1,6 @@
 plugin: community.general.lxd
 #url: unix:/var/snap/lxd/common/lxd/unix.socket
-url: https://172.27.72.4:8443/
+url: https://192.168.8.102:8443/
 #trust_password: "ins3Cure"
 #state: RUNNING
 groupby:
