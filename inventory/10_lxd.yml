@@ -1,7 +1,7 @@
 plugin: community.general.lxd
 #url: unix:/var/snap/lxd/common/lxd/unix.socket
-url: https://192.168.8.102:8443/
-#trust_password: "ins3Cure"
+url: https://lxc:8443/
+#trust_password: "changeMeOneDay"
 #state: RUNNING
 groupby:
   osUbuntu:
